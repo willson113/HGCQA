@@ -9,9 +9,6 @@ This case indicates that the failure primarily arises from insufficient recall a
 ![图4-7](https://github.com/user-attachments/assets/f7fd7764-a3b8-42c4-b9d9-51be1598029d)
 
 ## CASE2：
-Certainly! Here's the academic-style English translation of your paragraph:
-
----
 
 An analysis of smaller-parameter models reveals that even when equipped with hybrid retrieval and ReAct reasoning, their performance still has considerable room for improvement. Through sampling of their error cases, we observed that the primary limitation on their performance in HGCQA lies in the models’ inherently weak reasoning capabilities. Even with prompt-based enhancements such as Chain-of-Thought (CoT), Thought Prompting (ThoT), or ReAct, these models often fail to perform correct reasoning even when provided with context containing the necessary information.
 
@@ -19,8 +16,5 @@ As shown in Figure 10, for the multi-hop question *“What was the reign title d
 
 This analysis suggests that small-scale models struggle with long texts and complex, dispersed information. Prompt-based enhancements offer only limited improvement to their reasoning capabilities, making it difficult for them to accurately answer complex questions. Future work may explore fine-tuning strategies to enhance reasoning abilities—for instance, by applying supervised fine-tuning (SFT) to guide models in identifying and integrating key information during training. Training specifically on complex reasoning tasks may improve their performance on HGCQA. While fine-tuned small models may still lag behind larger counterparts, they offer advantages in lightweight deployment, making them suitable for resource-constrained environments.
 
----
-
-Let me know if you’d like a shorter version for a caption, a more informal version for a GitHub README, or help integrating this into your paper.
 ![图4-8](https://github.com/user-attachments/assets/dd198646-ca73-454e-b467-2028b98d5442)
 
