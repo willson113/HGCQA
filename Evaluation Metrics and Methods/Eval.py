@@ -4,7 +4,7 @@ import sys
 from zhipuai import ZhipuAI
 
 # 初始化客户端
-client = ZhipuAI(api_key="a91e7a400a15d12690b67227bf423934.y0jjHGrcHI6sCQ6i")
+client = ZhipuAI(api_key="your_apikey")
 
 # 读取标准答案和模型答案文件
 with open('all.json', 'r', encoding='utf-8') as f:
