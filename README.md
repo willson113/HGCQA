@@ -2,7 +2,7 @@
 
 **HGCQA (History & Geography Complex Question Answering)** is a large-scale benchmark designed for evaluating complex reasoning abilities of large language models in the vertical domains of Chinese history and geography.
 Research Challenge:
-Large Language Models (LLMs) exhibit notable limitations in handling complex question answering (QA) tasks within the domain of Chinese history and geography, primarily due to knowledge gaps and inadequate reasoning capabilities.
+Large Language Models (LLMs) exhibit notable limitations in handling complex question answering (CQA) tasks within the domain of Chinese history and geography, primarily due to knowledge gaps and inadequate reasoning capabilities.
 
 Key Issues:
 Domain-Specific Knowledge Deficits
@@ -62,10 +62,11 @@ evaluation metric. However, since LLMs often generate answers in descriptive for
   
 🚀 Baselines and Experimental Results
 We evaluate 7 large language models across 3 retrieval methods and 3 reasoning strategies:
-Retrieval Methods: BM25, Dense Retrieval (bge-m3), Hybrid
+Retrieval Methods: BM25, Dense Retrieval (bge-m3), Hybrid Retrieval，They are implemented based on the LangChain framework.
 
 
 Reasoning Prompts: COT, ThoT, ReAct
+
 COT Prompt Structure
 ![图4-4](https://github.com/user-attachments/assets/65da3ec4-b21b-4aac-8e82-32dd7bcbd91f)
 ThoT Prompt Structure
@@ -81,6 +82,7 @@ Llama2-70B
 Glm3-turbo
 ERNIE-3.5
 Glm-4
+
 
 🔍 Best-performing setup:
 Model: GLM-4
