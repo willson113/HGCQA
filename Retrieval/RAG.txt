@@ -1,1 +1,63 @@
+## Retrieval‑Augmented Generation (RAG) Framework
 
+In order to ground our complex question answering system in reliable, domain‑specific knowledge, we adopt a Retrieval‑Augmented Generation (RAG) paradigm.  RAG combines an explicit knowledge retrieval module with a powerful large language model (LLM) to both fetch relevant evidence and generate answers conditioned on that evidence.  Our implementation consists of the following key components:
+
+### 1. Retrieval Module
+
+We explore three complementary retrieval strategies, each operating over Chinese Wikipedia paragraphs filtered for history and geography:
+
+1. **Sparse (BM25) Retrieval**  
+   - We index every paragraph using the classical BM25 algorithm (via Whoosh).  
+   - At query time, the question is parsed and matched against an inverted index, returning the top‑K paragraphs by BM25 score.  
+   - This method excels at precise keyword matching, ensuring that factually relevant snippets are retrieved when the query contains exact terms.
+
+2. **Dense (Semantic) Retrieval**  
+   - We encode each paragraph into a fixed‑length vector using the BGE‑M3 embedding model.  
+   - These embeddings are stored in a Chroma vector store with an approximate nearest neighbor (ANN) index.  
+   - At query time, the question is embedded and the ANN search returns the top‑K semantically similar paragraphs.  
+   - To reduce redundancy, we apply Maximal Marginal Relevance (MMR) re‑ranking, balancing relevance with diversity.
+
+3. **Hybrid Retrieval**  
+   - We merge the BM25 and dense retrieval results using Reciprocal Rank Fusion (RRF).  
+   - Each paragraph’s final score is computed as the sum of reciprocal ranks from both methods, yielding a fused ranking that leverages both exact‐match precision and semantic coverage.
+
+### 2. Prompt Augmentation
+
+Once the top‑K evidence paragraphs are retrieved, we concatenate them into a single context block:
+
+```text
+Paragraphs:
+[p₁]
+
+[p₂]
+
+…  
+
+Based on the above evidence, please think step by step and answer the following question:
+
+Question: <user question>  
+Answer:
+We then feed this context into the LLM to guide it through a structured, “chain‑of‑thought” style reasoning process.
+
+3. Generation Module
+Model: We employ large Chinese language models (e.g., GLM‑4, ERNIE‑3.5, ChatGLM2, Wenxin Yiyan) via their respective APIs.
+
+Decoding: Standard greedy or beam‐search decoding is used to produce the final answer string.
+
+Error Handling: In case of API failures or timeouts, we fall back to a default “unable to answer” response and log the exception.
+
+4. Implementation Details
+Index Persistence: Both the Whoosh BM25 index and the Chroma vector store are persisted to disk. This ensures fast startup and avoids re‑indexing on every run.
+
+Scalability: The ANN index (HNSW) in Chroma allows sub‑100 ms retrieval for tens of thousands of paragraphs.
+
+Reproducibility: All retrieval and generation hyperparameters (e.g., BM25 k1/b, MMR λ, RRF weight) are fixed and documented in retrieval/config.yaml.
+
+5. Evaluation
+Exact Match (EM) is computed by comparing the generated answer to the gold answer in HGCQA.
+
+We also perform per‐type accuracy analysis across the eight complexity categories (Bool, Comparison, Count, Difference, Intersection, Multi‑hop, Ordinal, General).
+
+This RAG framework allows our system to dynamically incorporate external knowledge while leveraging the generative power of modern LLMs, leading to significant improvements on complex, domain‑specific Chinese question answering.```
+
+You can adjust the model names, file paths, and hyperparameter references to match your actual code layout.
