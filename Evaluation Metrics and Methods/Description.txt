@@ -1,1 +1,1 @@
-
+## We employed exact match (EM) as the evaluation metric. However, since LLMs typically generate answers in descriptive text containing relevant information while the dataset provides specific answer phrases, this discrepancy makes traditional EM difficult to apply directly. Therefore, this study adopts a large-model-based evaluation approach.
