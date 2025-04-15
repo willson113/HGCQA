@@ -5,23 +5,20 @@ from langchain.vectorstores import Chroma
 from langchain.schema import Document
 from langchain.llms import BaiduWenxin
 
-# ——— 0. 设置 API Key ———
 os.environ["BAIDU_API_KEY"] = "your_apikey"  # 替换为你的文心API key
 
-# ——— 1. 加载问题数据集 HGCQA ———
+
 with open("HGCQA.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 
-# ——— 2. 加载本地 bge-m3 模型 ———
+
 embeddings = HuggingFaceEmbeddings(model_name="/data/bge-m3")
 
-# ——— 3. 加载 Chroma 向量库（持久化路径） ———
 vectordb = Chroma(
     persist_directory="/data/Chroma_db",  # 向量库目录
     embedding_function=embeddings
 )
 
-# ——— 4. 创建 MMR 检索器（提升多样性） ———
 retriever = vectordb.as_retriever(
     search_type="mmr",
     search_kwargs={
@@ -30,11 +27,9 @@ retriever = vectordb.as_retriever(
     }
 )
 
-# ——— 5. 初始化大语言模型（文心一言） ———
 llm = BaiduWenxin(model="ernie-bot-turbo", api_key="your_apikey")
 tools = "ChromaRetriever"
 
-# ——— 6. 多轮推理提示模板（ReAct 风格） ———
 prompt_template = """请你尽量简明扼要地回答以下问题，并根据需要使用以下工具:{tools}
 
 请按照以下格式回答:
@@ -56,13 +51,12 @@ prompt_template = """请你尽量简明扼要地回答以下问题，并根据�
 思考:{fagent_scratchpad}
 """
 
-# ——— 7. 断点续跑机制 ———
 output_path = "answer.json"
 if os.path.exists(output_path):
     with open(output_path, "r", encoding="utf-8") as f:
         results = json.load(f)
     start_idx = len(results)
-    print(f"🔁 检测到已有 {start_idx} 条结果，将从第 {start_idx+1} 条继续处理。")
+    print(f" 检测到已有 {start_idx} 条结果，将从第 {start_idx+1} 条继续处理。")
 else:
     results = []
     start_idx = 0
@@ -74,7 +68,6 @@ for idx in range(start_idx, len(data)):
     qtype = item["type"]
 
     try:
-        # 8.1 使用 MMR 检索相关段落（Top 6）
         docs = retriever.get_relevant_documents(q)
         context = "\n\n".join([doc.page_content for doc in docs])
 
@@ -88,7 +81,6 @@ for idx in range(start_idx, len(data)):
             )
         )
 
-        # 8.3 调用大语言模型生成答案
         pred = llm(prompt).strip()
 
     except Exception as e:
@@ -106,4 +98,4 @@ for idx in range(start_idx, len(data)):
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
 
-print("✅ 所有问题处理完毕，答案已写入 answer.json")
+print("所有问题处理完毕，答案已写入 answer.json")
