@@ -1,1 +1,26 @@
+## CASE1:
+The best-performing method in this study is the GLM-4 model equipped with hybrid retrieval and ReAct reasoning, achieving an accuracy of 89.18%. We conducted a sampled error analysis of GLM-4 on the HGCQA dataset and found that its main limitations stem from the hybrid retriever failing to recall relevant knowledge paragraphs. The retrieved content often lacks strong relevance to the key information required to answer the question. Additionally, many of these problematic questions are abstract in nature. In some cases, excessive contextual information is returned, which overwhelms the model and causes it to miss critical clues during reasoning.
+
+Overall, GLM-4 demonstrates strong reasoning capabilities, and its performance can be further improved if it is provided with direct, highly relevant, and minimally distracting paragraphs. Future work should focus on optimizing retrieval strategies to enhance the quality of retrieved evidence and thus strengthen the model’s QA capability.
+
+As illustrated in Figure 9, for a general-type question such as “Ji Kang had associations with Lü Xun and his brother Lü An. Whom did he meet first?”, the hybrid retriever failed to retrieve paragraphs containing key information about Ji Kang’s interactions with the Lü brothers, resulting in an incorrect answer from GLM-4. Although relevant passages do exist in the knowledge base (see Figures 4–7), the returned content showed weak relevance and included substantial irrelevant information, which interfered with the reasoning process.
+
+This case indicates that the failure primarily arises from insufficient recall ability of the retriever and the interference of irrelevant information during reasoning. Future improvements should focus on enhancing the retriever's ability to identify and rank relevant content, and on filtering mechanisms that reduce noise and support more accurate inference.
+![图4-7](https://github.com/user-attachments/assets/f7fd7764-a3b8-42c4-b9d9-51be1598029d)
+
+## CASE2：
+Certainly! Here's the academic-style English translation of your paragraph:
+
+---
+
+An analysis of smaller-parameter models reveals that even when equipped with hybrid retrieval and ReAct reasoning, their performance still has considerable room for improvement. Through sampling of their error cases, we observed that the primary limitation on their performance in HGCQA lies in the models’ inherently weak reasoning capabilities. Even with prompt-based enhancements such as Chain-of-Thought (CoT), Thought Prompting (ThoT), or ReAct, these models often fail to perform correct reasoning even when provided with context containing the necessary information.
+
+As shown in Figure 10, for the multi-hop question *“What was the reign title during the tenure of Zhao Yunrang’s thirteenth son?”*, ChatGLM2-6B produced an incorrect answer despite the presence of relevant knowledge (see bolded segments in Figure 10). The correct reasoning path should be as follows: According to Paragraph 2, Zhao Yunrang’s thirteenth son was Zhao Zongshi (later renamed Zhao Shu); Paragraph 3 states that he reigned from May 1, 1063 to January 25, 1067; and Paragraph 4 indicates that the reign titles were *Zhiping* 元年 (1064) and *Zhiping* 三年 (1066). A coherent reasoning process would thus yield the correct reign title “Zhiping.” However, the model failed to complete this chain of reasoning, highlighting its limitations in information integration and logical inference.
+
+This analysis suggests that small-scale models struggle with long texts and complex, dispersed information. Prompt-based enhancements offer only limited improvement to their reasoning capabilities, making it difficult for them to accurately answer complex questions. Future work may explore fine-tuning strategies to enhance reasoning abilities—for instance, by applying supervised fine-tuning (SFT) to guide models in identifying and integrating key information during training. Training specifically on complex reasoning tasks may improve their performance on HGCQA. While fine-tuned small models may still lag behind larger counterparts, they offer advantages in lightweight deployment, making them suitable for resource-constrained environments.
+
+---
+
+Let me know if you’d like a shorter version for a caption, a more informal version for a GitHub README, or help integrating this into your paper.
+![图4-8](https://github.com/user-attachments/assets/dd198646-ca73-454e-b467-2028b98d5442)
 
