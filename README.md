@@ -1,6 +1,6 @@
 # HGCQA: A Benchmark for Complex Question Answering in Chinese History and Geography
 
-##**HGCQA (Chinese History and Geography Complex Question Answering)** the first large-scale Chinese CQA benchmark specifically designed for history and geography domains, comprising 10,103 expertannotated question-answer pairs with multi-stage quality validation.
+##**HGCQA (Chinese History and Geography Complex Question Answering)** the first large-scale Chinese CQA benchmark specifically designed for history and geography domains, comprising 10,103 expert annotated question-answer pairs with multi-stage quality validation.
 Research Challenge:
 Large Language Models (LLMs) exhibit notable limitations in handling complex question answering (CQA) tasks within the domain of Chinese history and geography, primarily due to knowledge gaps and inadequate reasoning capabilities.
 
