@@ -1,6 +1,6 @@
 # HGCQA： A Benchmark for Complex Question Answering Evaluation on Chinese History and Geography
 
-**HGCQA (History & Geography Complex Question Answering)** is a large-scale benchmark designed for evaluating complex reasoning abilities of large language models in the vertical domains of Chinese history and geography.
+=**HGCQA (History & Geography Complex Question Answering)** is a large-scale benchmark designed for evaluating complex reasoning abilities of large language models in the vertical domains of Chinese history and geography.
 Research Challenge:
 Large Language Models (LLMs) exhibit notable limitations in handling complex question answering (CQA) tasks within the domain of Chinese history and geography, primarily due to knowledge gaps and inadequate reasoning capabilities.
 
