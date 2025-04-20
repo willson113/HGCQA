@@ -4,6 +4,10 @@ For effective knowledge retrieval, it is essential to preprocess the knowledge s
 To enable efficient information extraction from this large-scale corpus, we implement rigorous preprocessing and standardization of the Wikipedia XML dump. This structured formatting facilitates subsequent knowledge retrieval and reasoning operations.
 ![image](https://github.com/user-attachments/assets/cb4e99dd-2fab-4a0e-9364-1a01cc6a4b88)
 
+## Our vector database
+![1745160673325](https://github.com/user-attachments/assets/72d16cf1-849e-42b9-8968-ea351f721c7b)
+
+
 
 ## Framework Diagram for Text-Based Keyword Retrieval
 ![1744726091068](https://github.com/user-attachments/assets/1c9987e0-50e8-414e-970e-30095453f9f2)
