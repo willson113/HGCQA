@@ -99,6 +99,8 @@ evaluation metric. However, since LLMs often generate answers in descriptive for
 ## 🚀 Baselines and Experimental Results
 We evaluate 7 large language models across 3 retrieval methods and 3 reasoning strategies:
 Retrieval Methods: BM25, Dense Retrieval (bge-m3), Hybrid Retrieval，They are implemented based on the LangChain framework.
+#### General framework with RAG for augmented experiments
+![n31](https://github.com/user-attachments/assets/6d783428-466f-46b8-a24e-ad1c194aefce)
 
 
 ## Reasoning Prompts: COT, ThoT, ReAct
