@@ -31,7 +31,7 @@ To address this gap, we introduce **HGCQA**, a benchmark dataset of **10,103 Chi
   - Ordinal
   - General
 
-HGCQA is the first benchmark focusing on **Chinese cQA** in history and geography.
+HGCQA is the first benchmark focusing on **Chinese CQA** in history and geography.
 
 ---
 
